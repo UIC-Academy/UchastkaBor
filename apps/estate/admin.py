@@ -1,10 +1,17 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 
-from apps.estate.models import Amenities, Estate, EstateAgent, EstateAgentComment, EstateCategory
+from apps.estate.models import (
+    Amenities,
+    Estate,
+    EstateAgent,
+    EstateAgentComment,
+    EstateCategory,
+)
 
 
 @admin.register(EstateAgent)
-class EstateAgentAdmin(admin.ModelAdmin):
+class EstateAgentAdmin(ModelAdmin):
     list_display = [
         "id",
         "first_name",
@@ -35,7 +42,7 @@ class EstateAgentAdmin(admin.ModelAdmin):
 
 
 @admin.register(EstateCategory)
-class EstateCategoryAdmin(admin.ModelAdmin):
+class EstateCategoryAdmin(ModelAdmin):
     list_display = [
         "id",
         "name",
@@ -49,7 +56,7 @@ class EstateCategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(Amenities)
-class AmenitiesAdmin(admin.ModelAdmin):
+class AmenitiesAdmin(ModelAdmin):
     list_display = [
         "id",
         "name",
@@ -63,7 +70,7 @@ class AmenitiesAdmin(admin.ModelAdmin):
 
 
 @admin.register(Estate)
-class EstateAdmin(admin.ModelAdmin):
+class EstateAdmin(ModelAdmin):
     list_display = [
         "id",
         "name",
@@ -114,7 +121,7 @@ class EstateAdmin(admin.ModelAdmin):
 
 
 @admin.register(EstateAgentComment)
-class EstateAgentCommentAdmin(admin.ModelAdmin):
+class EstateAgentCommentAdmin(ModelAdmin):
     list_display = [
         "id",
         "name",
@@ -129,5 +136,3 @@ class EstateAgentCommentAdmin(admin.ModelAdmin):
         "email",
         "comment",
     ]
-
-

@@ -1,10 +1,11 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 
 from apps.common.models import State, Region, Currency, Media
 
 
 @admin.register(State)
-class StateAdmin(admin.ModelAdmin):
+class StateAdmin(ModelAdmin):
     list_display = [
         "id",
         "name",
@@ -18,7 +19,7 @@ class StateAdmin(admin.ModelAdmin):
 
 
 @admin.register(Region)
-class RegionAdmin(admin.ModelAdmin):
+class RegionAdmin(ModelAdmin):
     list_display = [
         "id",
         "name",
@@ -37,7 +38,7 @@ class RegionAdmin(admin.ModelAdmin):
 
 
 @admin.register(Currency)
-class CurrencyAdmin(admin.ModelAdmin):
+class CurrencyAdmin(ModelAdmin):
     list_display = [
         "id",
         "name",
@@ -51,7 +52,7 @@ class CurrencyAdmin(admin.ModelAdmin):
 
 
 @admin.register(Media)
-class MediaAdmin(admin.ModelAdmin):
+class MediaAdmin(ModelAdmin):
     list_display = [
         "id",
         "file",
