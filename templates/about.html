@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-
-{% block title %}About | UchastkaBor{% endblock title %}
-
+{% load static %}
+{% block title %}About | BezmaklerDom{% endblock title %}
 {% block content %}
+
 <!--/ Intro Single star /-->
 <section class="intro-single">
   <div class="container">
@@ -16,7 +16,7 @@
         <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Home</a>
+              <a href={% url "home" %}>Home</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
               About
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="about-img-box">
-          <img src="img/slide-about-1.jpg" alt="" class="img-fluid">
+          <img src={% static "img/slide-about-1.jpg" %} alt="" class="img-fluid">
         </div>
         <div class="sinse-box">
           <h3 class="sinse-title">EstateAgency
@@ -48,7 +48,7 @@
       <div class="col-md-12 section-t8">
         <div class="row">
           <div class="col-md-6 col-lg-5">
-            <img src="img/about-2.jpg" alt="" class="img-fluid">
+            <img src={% static "img/about-2.jpg" %} alt="" class="img-fluid">
           </div>
           <div class="col-lg-2  d-none d-lg-block">
             <div class="title-vertical d-flex justify-content-start">
@@ -99,7 +99,7 @@
       <div class="col-md-4">
         <div class="card-box-d">
           <div class="card-img-d">
-            <img src="img/agent-7.jpg" alt="" class="img-d img-fluid">
+            <img src={% static "img/agent-7.jpg" %} alt="" class="img-d img-fluid">
           </div>
           <div class="card-overlay card-overlay-hover">
             <div class="card-header-d">
@@ -160,7 +160,7 @@
       <div class="col-md-4">
         <div class="card-box-d">
           <div class="card-img-d">
-            <img src="img/agent-6.jpg" alt="" class="img-d img-fluid">
+            <img src={% static "img/agent-6.jpg" %} alt="" class="img-d img-fluid">
           </div>
           <div class="card-overlay card-overlay-hover">
             <div class="card-header-d">
@@ -221,7 +221,7 @@
       <div class="col-md-4">
         <div class="card-box-d">
           <div class="card-img-d">
-            <img src="img/agent-5.jpg" alt="" class="img-d img-fluid">
+            <img src={% static "img/agent-5.jpg" %} alt="" class="img-d img-fluid">
           </div>
           <div class="card-overlay card-overlay-hover">
             <div class="card-header-d">
@@ -283,95 +283,4 @@
   </div>
 </section>
 <!--/ Team End /-->
-
-<!--/ footer Star /-->
-<section class="section-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-4">
-        <div class="widget-a">
-          <div class="w-header-a">
-            <h3 class="w-title-a text-brand">EstateAgency</h3>
-          </div>
-          <div class="w-body-a">
-            <p class="w-text-a color-text-a">
-              Enim minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat duis
-              sed aute irure.
-            </p>
-          </div>
-          <div class="w-footer-a">
-            <ul class="list-unstyled">
-              <li class="color-a">
-                <span class="color-text-a">Phone .</span> contact@example.com
-              </li>
-              <li class="color-a">
-                <span class="color-text-a">Email .</span> +54 356 945234
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 section-md-t3">
-        <div class="widget-a">
-          <div class="w-header-a">
-            <h3 class="w-title-a text-brand">The Company</h3>
-          </div>
-          <div class="w-body-a">
-            <div class="w-body-a">
-              <ul class="list-unstyled">
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Site Map</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Legal</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Agent Admin</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Careers</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Affiliate</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="fa fa-angle-right"></i> <a href="#">Privacy Policy</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 section-md-t3">
-        <div class="widget-a">
-          <div class="w-header-a">
-            <h3 class="w-title-a text-brand">International sites</h3>
-          </div>
-          <div class="w-body-a">
-            <ul class="list-unstyled">
-              <li class="item-list-a">
-                <i class="fa fa-angle-right"></i> <a href="#">Venezuela</a>
-              </li>
-              <li class="item-list-a">
-                <i class="fa fa-angle-right"></i> <a href="#">China</a>
-              </li>
-              <li class="item-list-a">
-                <i class="fa fa-angle-right"></i> <a href="#">Hong Kong</a>
-              </li>
-              <li class="item-list-a">
-                <i class="fa fa-angle-right"></i> <a href="#">Argentina</a>
-              </li>
-              <li class="item-list-a">
-                <i class="fa fa-angle-right"></i> <a href="#">Singapore</a>
-              </li>
-              <li class="item-list-a">
-                <i class="fa fa-angle-right"></i> <a href="#">Philippines</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 {% endblock content %}

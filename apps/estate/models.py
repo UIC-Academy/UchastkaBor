@@ -34,6 +34,13 @@ class EstateAgent(BaseModel):
         max_length=255, verbose_name="Facebook", blank=True, null=True
     )
     x = models.CharField(max_length=255, verbose_name="X", blank=True, null=True)
+    rating = models.DecimalField(
+        verbose_name="Rating",
+        decimal_places=1,
+        max_digits=2,
+        validators=[MaxValueValidator(5), MinValueValidator(0)],
+        default=5,
+    )
 
     class Meta:
         verbose_name = "Estate Agent"
@@ -102,6 +109,7 @@ class Estate(BaseModel):
         "common.Media", verbose_name="Images", related_name="estates"
     )
     video = models.URLField(verbose_name="Video", blank=True, null=True)
+    is_featured = models.BooleanField(verbose_name="Is Featured", default=False)
 
     class Meta:
         verbose_name = "Estate"
@@ -137,6 +145,12 @@ class EstateAgentComment(BaseModel):
     name = models.CharField(max_length=255, verbose_name="Name")
     email = models.EmailField(verbose_name="Email")
     comment = models.TextField(verbose_name="Comment")
+    stars_count = models.IntegerField(
+        verbose_name="Stars Count",
+        validators=[MaxValueValidator(5), MinValueValidator(0)],
+        blank=True,
+        null=True,
+    )
 
     class Meta:
         verbose_name = "Estate Agent Comment"

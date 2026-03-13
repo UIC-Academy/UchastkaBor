@@ -1,5 +1,5 @@
 from django.contrib import admin
-from unfold.admin import ModelAdmin
+from django.contrib.admin import ModelAdmin
 
 from apps.estate.models import (
     Amenities,
@@ -8,6 +8,16 @@ from apps.estate.models import (
     EstateAgentComment,
     EstateCategory,
 )
+
+
+@admin.action(description="Mark selected Estates as featured")
+def mark_as_featured(modeladmin, request, queryset):
+    queryset.update(is_featured=True)
+
+
+@admin.action(description="Mark selected Estates as unfeatured")
+def mark_as_unfeatured(modeladmin, request, queryset):
+    queryset.update(is_featured=False)
 
 
 @admin.register(EstateAgent)
@@ -107,6 +117,7 @@ class EstateAdmin(ModelAdmin):
         "latitude",
         "longitude",
         "status",
+        "is_featured",
         "area",
         "beds",
         "baths",
@@ -118,6 +129,7 @@ class EstateAdmin(ModelAdmin):
         "images",
         "video",
     ]
+    actions = [mark_as_featured, mark_as_unfeatured]
 
 
 @admin.register(EstateAgentComment)

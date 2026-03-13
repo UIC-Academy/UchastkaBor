@@ -1,16 +1,33 @@
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
-from django.http import HttpResponse
-from django.views import View
-from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, RedirectView
+from django.views.generic import TemplateView
 
-from apps.estate.models import Estate
+from apps.estate.models import Estate, EstateAgent
+from apps.blog.models import Post
 
 
 def home(request):
-    estates = Estate.objects.prefetch_related("images").all()
-    return render(request, "estate/index.html", context={"estates": estates})
+    estates = (
+        Estate.objects.prefetch_related("images")
+        .filter(is_featured=True)
+        .order_by("-price")[:3]
+    )
+    properties = (
+        Estate.objects.prefetch_related("images").all().order_by("-created_at")[:4]
+    )
+    agents = (
+        EstateAgent.objects.select_related("avatar").order_by("-rating")[:3]
+    )
+    posts = (
+        Post.objects.select_related("image").order_by("-created_at")[:4]
+    )
+
+    context = {
+        "estates": estates,
+        "properties": properties,
+        "agents": agents,
+        "posts": posts
+    }
+    return render(request, "estate/index.html", context=context)
 
 
 def about(request):
