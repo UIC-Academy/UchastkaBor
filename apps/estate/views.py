@@ -43,9 +43,7 @@ class PropertyView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         limit, offset = self.request.GET.get("limit", 10), self.request.GET.get("offset", 0)
-        print("???", offset)
         pages_count = Estate.objects.count() // int(limit) + 1
-        print(">>>", pages_count)
         context["estates"] = Estate.objects.prefetch_related("images").order_by("-created_at")[int(offset) : int(offset) + int(limit)]
         context["limit"] = limit
         context["offset"] = offset
@@ -53,13 +51,18 @@ class PropertyView(TemplateView):
         return context
 
 
-class BlogListView(TemplateView):
-    template_name = "blog-grid.html"
-
 
 class PropertySingleView(TemplateView):
     template_name = "estate/property-single.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["estate"] = Estate.objects.prefetch_related("images").get(slug=self.kwargs["slug"])
+        return context
+
+
+class BlogListView(TemplateView):
+    template_name = "blog-grid.html"
 
 class BlogSingleView(TemplateView):
     template_name = "blog-single.html"
