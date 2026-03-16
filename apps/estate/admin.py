@@ -107,28 +107,6 @@ class EstateAdmin(ModelAdmin):
         "amenities",
         "images",
     ]
-    fields = [
-        "name",
-        "agent",
-        "category",
-        "state",
-        "region",
-        "address",
-        "latitude",
-        "longitude",
-        "status",
-        "is_featured",
-        "area",
-        "beds",
-        "baths",
-        "garage",
-        "price",
-        "currency",
-        "description",
-        "amenities",
-        "images",
-        "video",
-    ]
     actions = [mark_as_featured, mark_as_unfeatured]
 
 

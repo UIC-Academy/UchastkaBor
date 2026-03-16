@@ -31,16 +31,25 @@ def home(request):
 
 
 def about(request):
-    return render(request, "about.html")
+    agents = (
+        EstateAgent.objects.select_related("avatar").order_by("-rating")[:3]
+    )
+    return render(request, "about.html", context={"agents": agents})
 
 
 class PropertyView(TemplateView):
-    template_name = "property-grid.html"
+    template_name = "estate/property-grid.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(context)
-        context["estates"] = Estate.objects.prefetch_related("images").all()
+        limit, offset = self.request.GET.get("limit", 10), self.request.GET.get("offset", 0)
+        print("???", offset)
+        pages_count = Estate.objects.count() // int(limit) + 1
+        print(">>>", pages_count)
+        context["estates"] = Estate.objects.prefetch_related("images").order_by("-created_at")[int(offset) : int(offset) + int(limit)]
+        context["limit"] = limit
+        context["offset"] = offset
+        context["pages_count"] = [i+1 for i in range(pages_count)]
         return context
 
 
@@ -49,7 +58,7 @@ class BlogListView(TemplateView):
 
 
 class PropertySingleView(TemplateView):
-    template_name = "property-single.html"
+    template_name = "estate/property-single.html"
 
 
 class BlogSingleView(TemplateView):

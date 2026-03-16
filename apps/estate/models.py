@@ -52,6 +52,7 @@ class EstateAgent(BaseModel):
 
 class Estate(BaseModel):
     name = models.CharField(max_length=255, verbose_name="Estate Name")
+    slug = models.SlugField(max_length=255, verbose_name="Slug", blank=True, null=True)
     agent = models.ForeignKey(
         "estate.EstateAgent",
         on_delete=models.RESTRICT,

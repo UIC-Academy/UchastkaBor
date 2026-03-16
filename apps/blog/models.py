@@ -6,6 +6,7 @@ from apps.common.models import BaseModel, Media
 
 class Post(BaseModel):
     title = models.CharField(max_length=255, verbose_name="Title")
+    slug = models.SlugField(max_length=255, verbose_name="Slug", blank=True, null=True)
     subtitle = models.CharField(max_length=255, verbose_name="Subtitle")
     image = models.ForeignKey(
         "common.Media",
