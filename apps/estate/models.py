@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from apps.common.models import BaseModel
@@ -152,6 +153,10 @@ class EstateAgentComment(BaseModel):
         blank=True,
         null=True,
     )
+
+    def get_absolute_url(self):
+        return reverse("properties")
+    
 
     class Meta:
         verbose_name = "Estate Agent Comment"

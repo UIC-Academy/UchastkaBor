@@ -225,8 +225,8 @@
             </div>
             <div class="col-md-12 col-lg-4">
               <div class="property-contact">
-                <form class="form-a">
-                  <div class="row">
+                <form class="form-a" method="POST" action="{% url "estate-agent-comment-handler" %}">
+                  {% comment %} <div class="row">
                     <div class="col-md-12 mb-1">
                       <div class="form-group">
                         <input type="text" class="form-control form-control-lg form-control-a" id="inputName"
@@ -244,7 +244,9 @@
                         <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45"
                           rows="8" required></textarea>
                       </div>
-                    </div>
+                    </div> {% endcomment %}
+                    {% csrf_token %}
+                    {{ form }}
                     <div class="col-md-12">
                       <button type="submit" class="btn btn-a">Send Message</button>
                     </div>

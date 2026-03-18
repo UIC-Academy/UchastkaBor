@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 
-from apps.estate.models import Estate, EstateAgent
+from apps.estate.models import Estate, EstateAgent, EstateAgentComment
 from apps.blog.models import Post
+from apps.estate.forms import EstateAgentCommentForm
 
 
 def home(request):
@@ -58,7 +59,13 @@ class PropertySingleView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["estate"] = Estate.objects.prefetch_related("images").get(slug=self.kwargs["slug"])
+        context["form"] = EstateAgentCommentForm()
         return context
+
+
+class EstateAgentCommentHandlerView(CreateView):
+    model = EstateAgentComment
+    form_class = EstateAgentCommentForm
 
 
 class BlogListView(TemplateView):
