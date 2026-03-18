@@ -2,6 +2,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 from apps.common.models import BaseModel, Media
+from core.utils import slugify
 
 
 class Post(BaseModel):
@@ -28,6 +29,11 @@ class Post(BaseModel):
     class Meta:
         verbose_name = "Post"
         verbose_name_plural = "Posts"
+
+    def save(self, *args, **kwargs):
+        if self.title and self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

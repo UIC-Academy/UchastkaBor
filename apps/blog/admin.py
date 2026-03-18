@@ -9,6 +9,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ("title", "author", "category", "created_at", "updated_at")
     list_filter = ("category", "created_at", "updated_at")
     search_fields = ("title", "author")
+    readonly_fields = ("slug", "views_count", "comments_count")
 
 
 @admin.register(PostCategory)

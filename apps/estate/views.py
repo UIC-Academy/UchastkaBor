@@ -68,13 +68,6 @@ class EstateAgentCommentHandlerView(CreateView):
     form_class = EstateAgentCommentForm
 
 
-class BlogListView(TemplateView):
-    template_name = "blog-grid.html"
-
-class BlogSingleView(TemplateView):
-    template_name = "blog-single.html"
-
-
 class AgentListView(TemplateView):
     template_name = "agent-grid.html"
 
